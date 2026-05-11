@@ -23,132 +23,176 @@ body.dark{
   --header-bg:linear-gradient(180deg,#0F1F35 0%,#162840 60%,#0F1F35 100%);
   --glass-bg:rgba(20,40,80,0.6);
 }
-html,body{height:100%;overflow:hidden;}
-body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;display:flex;flex-direction:column;transition:background 0.3s,color 0.3s;}
 
-.top-frame{flex-shrink:0;background:var(--header-bg);}
+/* REPLACE FROM HERE */
+/* MOBILE FIRST — scrollable, compact glass box */
+html,body{height:auto;overflow-x:hidden;overflow-y:auto;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;display:block;transition:background 0.3s,color 0.3s;}
+
+.top-frame{
+  background:var(--header-bg);
+  position:sticky;
+  top:0;
+  z-index:100;
+  /* Adds the breathing room at the top of the phone screen */
+  padding-top: 20px; 
+  padding-bottom: 5px;
+}
 
 .glass-box{
-  margin:40px 18px 16px;
+  margin: 0 14px 12px;
   background:var(--glass-bg);
   border:1px solid rgba(255,255,255,0.4);
   border-radius:20px;
-  padding:14px 16px 12px;
-  display:flex;
-  flex-direction:row;
-  align-items:stretch;
+  padding:15px 12px 35px;
+  
+  /* GRID FOR MOBILE CENTERING */
+  display: grid;
+  grid-template-columns: 85px 1fr 85px; 
+  align-items: center;
+  
   box-shadow:0 8px 32px rgba(31,60,120,0.1),inset 0 1px 0 rgba(255,255,255,0.5);
   position:relative;
   overflow:hidden;
-  min-height:150px;
+  min-height:110px;
 }
-.glass-icons{position:absolute;top:10px;right:12px;display:flex;gap:8px;z-index:10;}
-.glass-icon-btn{background:rgba(255,255,255,0.25);border:1px solid rgba(255,255,255,0.4);border-radius:8px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:background 0.15s;color:#fff;}
-.glass-icon-btn:hover{background:rgba(255,255,255,0.4);}
 
-.glass-scores{display:flex;flex-direction:column;justify-content:center;gap:16px;width:130px;flex-shrink:0;margin-right:14px;padding-top:6px;}
+.glass-icons{position:absolute;top:8px;right:10px;display:flex;gap:6px;z-index:10;}
+.glass-icon-btn{background:rgba(255,255,255,0.25);border:1px solid rgba(255,255,255,0.4);border-radius:7px;width:26px;height:26px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;transition:background 0.15s;}
+
+.glass-scores{
+  grid-column: 1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:10px;
+  width:100%;
+}
 .glass-score-item{display:flex;flex-direction:column;gap:3px;}
-.glass-score-label{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:#fff;font-family:'DM Mono',monospace;font-weight:700;}
-.glass-score-bar{height:14px;background:rgba(255,255,255,0.2);border-radius:3px;overflow:hidden;}
+.glass-score-label{font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:#fff;font-family:'DM Mono',monospace;font-weight:700;}
+.glass-score-bar{height:8px;background:rgba(255,255,255,0.2);border-radius:3px;overflow:hidden;}
 .glass-score-fill{height:100%;border-radius:3px;transition:width 0.4s;background:rgba(255,255,255,0.7);}
 
+.glass-center{
+  grid-column: 2;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align: center;
+  padding:0;
+}
+.glass-center img{height:52px;width:auto;display:block;}
+.glass-motto{font-family:'DM Sans',sans-serif;font-size:7.5px;letter-spacing:1px;color:#fff;text-transform:uppercase;font-weight:700;text-align:center;max-width:140px;line-height:1.2;margin-top:0 !important;}
+
+.glass-countdown{position:absolute;bottom:8px;right:12px;text-align:right;}
+.glass-countdown-num{font-family:'Bebas Neue',sans-serif;font-size:28px;color:#fff;line-height:1;text-shadow:0 2px 12px rgba(37,99,235,0.3);}
+.glass-countdown-label{font-size:6px;color:rgba(255,255,255,0.75);letter-spacing:1.5px;text-transform:uppercase;font-family:'DM Mono',monospace;margin-top:1px;}
+
 @media(min-width:700px){
-  /* 1. Sleek desktop map with tighter columns */
+  html,body{height:100%;overflow:hidden;}
+  body{display:flex;flex-direction:column;}
+  .top-frame{flex-shrink:0;position:static;padding-top:0;}
+  .main{flex:1;overflow-y:auto;padding:16px 20px 80px;}
+
   .glass-box {
+    margin: 28px 24px 16px;
+    padding: 20px 40px;
     display: grid;
     grid-template-columns: 180px 1fr 180px; 
     align-items: center;
-    min-height: 180px; /* Forces the box to be much sleeker/shorter */
-    padding: 10px 40px; 
-    overflow: visible;
+    min-height: 200px;
+    position: relative;
   }
 
-  /* 2. Massive symbol centering */
+  .glass-scores {
+    grid-column: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
   .glass-center {
     grid-column: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
-    top: -10px;
+    justify-content: center;
+    text-align: center;
   }
 
   .glass-center img {
-    height: 180px; /* True Hero scale on desktop */
+    height: 200px; 
     width: auto;
-    margin-bottom: 0;
+    display: block;
+    margin: 0 auto;
   }
 
-  /* 3. Snapped Motto - Tightly packed and WHITE */
   .glass-motto {
     font-size: 11px;
-    max-width: 480px;
-    margin-top: -38px !important; /* Pulls motto up tight to symbol */
-    padding-right: 0; 
-    text-align: center;
+    max-width: 460px;
     letter-spacing: 3px;
-    line-height: 1.2;
-    color: rgba(255, 255, 255, 0.9) !important; /* BACK TO WHITE */
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
-    font-weight: 700 !important;
+    text-align: center;
+    color: #fff;
+    font-weight: 700;
+    margin-top: -45px !important; 
+    padding-right: 0 !important;
   }
 
-/* 4. Drop the countdown into the bottom-right corner */
   .glass-countdown {
     grid-column: 3;
-    position: absolute !important; /* Forces it to break the grid flow */
-    bottom: 12px;
-    right: 20px;
+    position: static;
     text-align: right;
   }
 
-  .glass-countdown-num {
-    font-size: 38px !important;
-    color: #ffffff !important;
-    line-height: 1;
-  }
-
-  .glass-countdown-label {
-    font-size: 8px !important;
-    color: rgba(255, 255, 255, 0.75) !important;
-    letter-spacing: 1.5px;
-    margin-top: 1px;
-  }
-
-  /* 5. Left-side Scores alignment */
-  .glass-scores {
-    grid-column: 1;
-    margin-right: 0;
-    gap: 12px;
-  }
+  .glass-countdown-num { font-size: 44px; }
+  .glass-countdown-label { font-size: 8px; }
+  .glass-icon-btn { width: 30px; height: 30px; font-size: 15px; }
+}
+/* STOP REPLACING HERE */
+  
+/* FIXES THE WEIRD DATE THING — SNAP TO LEFT */
+.month-year-display {
+  padding: 12px 24px 2px !important;
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-size: 24px !important;
+  text-align: left !important;
+  color: var(--accent) !important;
 }
 
-.month-year-display{padding:0 22px 4px;font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:3px;color:var(--accent);}
-.date-strip-wrap{display:flex;gap:6px;overflow-x:auto;padding:8px 22px 8px;scrollbar-width:none;}
+.date-strip-wrap {
+  display: flex !important;
+  padding: 8px 24px 14px !important;
+  justify-content: flex-start !important;
+  overflow-x: auto;
+}
+
+/* DATE STRIP */
+.month-year-display{padding:0 16px 3px;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:3px;color:var(--accent);}
+.date-strip-wrap{display:flex;gap:5px;overflow-x:auto;padding:6px 16px 6px;scrollbar-width:none;}
 .date-strip-wrap::-webkit-scrollbar{display:none;}
-.date-pill{min-width:52px;border-radius:10px;border:1.5px solid rgba(37,99,235,0.15);background:rgba(255,255,255,0.6);backdrop-filter:blur(8px);text-align:center;cursor:pointer;flex-shrink:0;overflow:hidden;position:relative;transition:all 0.15s;}
+.date-pill{min-width:46px;border-radius:9px;border:1.5px solid rgba(37,99,235,0.15);background:rgba(255,255,255,0.6);backdrop-filter:blur(8px);text-align:center;cursor:pointer;flex-shrink:0;overflow:hidden;position:relative;transition:all 0.15s;}
 body.dark .date-pill{background:rgba(255,255,255,0.08);}
 .date-pill.active{border-color:var(--accent);background:rgba(255,255,255,0.92);box-shadow:0 2px 12px rgba(37,99,235,0.2);}
 body.dark .date-pill.active{background:rgba(37,99,235,0.3);}
-.date-pill-inner{padding:6px 4px 5px;position:relative;z-index:2;}
-.date-pill .dow{font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-family:'DM Mono',monospace;display:block;}
-.date-pill .dom{font-size:16px;font-weight:700;color:var(--text);display:block;margin-top:1px;}
+.date-pill-inner{padding:5px 3px 4px;position:relative;z-index:2;}
+.date-pill .dow{font-size:7px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-family:'DM Mono',monospace;display:block;}
+.date-pill .dom{font-size:14px;font-weight:700;color:var(--text);display:block;margin-top:1px;}
 .date-pill.active .dow,.date-pill.active .dom{color:var(--accent);}
 .stripes{position:absolute;inset:0;display:flex;flex-direction:column;z-index:1;}
 .s1,.s2,.s3{flex:1;}
 
-.prog-bar{height:2px;background:rgba(37,99,235,0.12);margin:0 22px 8px;}
+.prog-bar{height:2px;background:rgba(37,99,235,0.12);margin:0 16px 6px;}
 .prog-fill{height:100%;background:linear-gradient(90deg,var(--accent),#60A5FA);transition:width 0.5s;}
 
-.nav{display:flex;padding:0 14px 10px;gap:4px;}
-.nav-btn{flex:1;padding:8px 2px;border:1.5px solid rgba(37,99,235,0.18);border-radius:8px;background:rgba(255,255,255,0.5);color:var(--muted);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all 0.15s;font-weight:600;backdrop-filter:blur(4px);}
+.nav{display:flex;padding:0 12px 8px;gap:4px;}
+.nav-btn{flex:1;padding:7px 2px;border:1.5px solid rgba(37,99,235,0.18);border-radius:8px;background:rgba(255,255,255,0.5);color:var(--muted);font-family:'DM Sans',sans-serif;font-size:9px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all 0.15s;font-weight:600;backdrop-filter:blur(4px);}
 body.dark .nav-btn{background:rgba(255,255,255,0.05);}
 .nav-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 2px 10px rgba(37,99,235,0.3);}
 .nav-btn:hover:not(.active){border-color:var(--accent);color:var(--accent);}
 
-.main{flex:1;overflow-y:auto;padding:16px 20px 80px;scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
-.main::-webkit-scrollbar{width:3px;}
-.main::-webkit-scrollbar-thumb{background:var(--border);}
+.main{padding:14px 16px 100px;}
 .sec-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
 .sec-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:var(--text);}
 .add-btn{background:var(--accent);color:#fff;border:none;padding:7px 14px;border-radius:8px;font-size:10px;cursor:pointer;letter-spacing:1px;text-transform:uppercase;font-family:'DM Sans',sans-serif;font-weight:700;transition:all 0.15s;box-shadow:0 2px 8px rgba(37,99,235,0.25);}
@@ -211,9 +255,9 @@ body.dark .nav-btn{background:rgba(255,255,255,0.05);}
 .ex-meta{font-size:10px;color:var(--muted);font-family:'DM Mono',monospace;margin-top:2px;}
 .ex-prev{font-size:10px;color:var(--accent);font-family:'DM Mono',monospace;margin-top:3px;font-weight:600;}
 .ex-inputs{display:flex;gap:4px;align-items:center;flex-shrink:0;}
-.ex-input{background:var(--surface2);border:1.5px solid var(--border);border-radius:6px;color:var(--text);font-family:'DM Mono',monospace;font-size:12px;width:46px;padding:5px 4px;text-align:center;transition:border-color 0.15s;}
+.ex-input{background:var(--surface2);border:1.5px solid var(--border);border-radius:6px;color:var(--text);font-family:'DM Mono',monospace;font-size:12px;width:40px;padding:5px 3px;text-align:center;transition:border-color 0.15s;}
 .ex-input:focus{outline:none;border-color:var(--accent);}
-.ex-input-wt{background:var(--surface2);border:1.5px solid var(--border);border-radius:6px;color:var(--text);font-family:'DM Mono',monospace;font-size:12px;width:70px;padding:5px 4px;text-align:center;transition:border-color 0.15s;}
+.ex-input-wt{background:var(--surface2);border:1.5px solid var(--border);border-radius:6px;color:var(--text);font-family:'DM Mono',monospace;font-size:12px;width:65px;padding:5px 4px;text-align:center;transition:border-color 0.15s;}
 .ex-input-wt:focus{outline:none;border-color:var(--accent);}
 .unit-btn{font-size:9px;font-weight:700;background:var(--accent);color:#fff;padding:4px 6px;border-radius:6px;cursor:pointer;border:none;font-family:'DM Mono',monospace;}
 .exdel{background:none;border:none;color:var(--muted);cursor:pointer;font-size:16px;opacity:0;transition:all 0.15s;padding:2px;}
@@ -289,7 +333,6 @@ body.dark .nav-btn{background:rgba(255,255,255,0.05);}
 .threshold-slider{flex:1;accent-color:var(--accent);}
 .threshold-val{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--accent);min-width:44px;text-align:right;}
 
-/* Dark mode toggle */
 .toggle-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border);}
 .toggle-label{font-size:13px;font-weight:500;color:var(--text);}
 .toggle-switch{position:relative;width:44px;height:24px;cursor:pointer;}
@@ -345,7 +388,7 @@ body.dark .nav-btn{background:rgba(255,255,255,0.05);}
     </div>
     <div class="glass-center">
       <img src="logo.png" alt="DELTA3" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
-      <div style="display:none;font-family:'DM Sans',sans-serif;font-size:44px;font-weight:900;color:#fff;letter-spacing:-1px;">DELTA3</div>
+      <div style="display:none;font-family:'DM Sans',sans-serif;font-size:36px;font-weight:900;color:#fff;letter-spacing:-1px;">DELTA3</div>
       <div class="glass-motto" id="mottoDisplay">MAKE HARD DECISIONS / IF IT WAS EASY EVERYONE WOULD DO IT</div>
     </div>
     <div class="glass-countdown">
@@ -423,41 +466,28 @@ const QUOTES=[
   {text:"He who sweats more in training bleeds less in war.",author:"Spartan Warrior Code"},
   {text:"Your body can stand almost anything. It's your mind that you have to convince.",author:"Unknown"},
   {text:"The successful warrior is the average man with laser-like focus.",author:"Bruce Lee"},
-  {text:"If you always put limits on everything you do, physical or anything else, it will spread into your work and into your life. There are no limits. There are only plateaus.",author:"Bruce Lee"},
   {text:"Excellence is not a destination but a continuous journey that never ends.",author:"Brian Tracy"},
   {text:"A champion is defined not by their wins but by how they can recover when they fall.",author:"Serena Williams"},
   {text:"Gold medals aren't really made of gold. They're made of sweat, determination, and a hard-to-find alloy called guts.",author:"Dan Gable"},
-  {text:"The difference between the impossible and the possible lies in a person's determination.",author:"Tommy Lasorda"},
   {text:"If you want to be the best, you have to do things that other people aren't willing to do.",author:"Michael Phelps"},
-  {text:"Most people give up just when they're about to achieve success.",author:"Ross Perot"},
   {text:"The harder the battle, the sweeter the victory.",author:"Les Brown"},
-  {text:"What you do today can improve all your tomorrows.",author:"Ralph Marston"},
   {text:"You don't have to be great to start, but you have to start to be great.",author:"Zig Ziglar"},
   {text:"The only bad workout is the one that didn't happen.",author:"Unknown"},
   {text:"Take care of your body. It's the only place you have to live.",author:"Jim Rohn"},
   {text:"Strength does not come from physical capacity. It comes from indomitable will.",author:"Mahatma Gandhi"},
-  {text:"The clock is ticking. Are you becoming the person you want to be?",author:"Greg Plitt"},
-  {text:"We must all suffer one of two things: the pain of discipline or the pain of regret.",author:"Jim Rohn"},
   {text:"The first wealth is health.",author:"Ralph Waldo Emerson"},
   {text:"To give anything less than your best is to sacrifice the gift.",author:"Steve Prefontaine"},
-  {text:"Nobody who ever gave their best regretted it.",author:"George Halas"},
-  {text:"It's not about the weight you lift, it's about the life you build.",author:"Unknown"},
   {text:"The mind is the limit. As long as the mind can envision the fact that you can do something, you can do it.",author:"Arnold Schwarzenegger"},
-  {text:"The worst thing I can be is the same as everybody else.",author:"Arnold Schwarzenegger"},
   {text:"Everybody pities the weak; jealousy you have to earn.",author:"Arnold Schwarzenegger"},
   {text:"You can have results or excuses. Not both.",author:"Arnold Schwarzenegger"},
-  {text:"Good things come to those who work their asses off.",author:"Unknown"},
-  {text:"Don't limit your challenges. Challenge your limits.",author:"Unknown"},
   {text:"Obsessed is a word the lazy use to describe the dedicated.",author:"Unknown"},
-  {text:"You're only one workout away from a good mood.",author:"Unknown"},
-  {text:"Train insane or remain the same.",author:"Unknown"},
   {text:"The pain you feel today will be the strength you feel tomorrow.",author:"Unknown"},
   {text:"Hustle in silence and let your success make the noise.",author:"Unknown"},
-  {text:"Sleep is for those who are broke.",author:"Unknown"},
   {text:"Be so good they can't ignore you.",author:"Steve Martin"},
   {text:"Work like there is someone working 24 hours a day to take it all away from you.",author:"Mark Cuban"},
-  {text:"Sweat is just fat crying.",author:"Unknown"},
   {text:"The body achieves what the mind believes.",author:"Unknown"},
+  {text:"Don't limit your challenges. Challenge your limits.",author:"Unknown"},
+  {text:"Train insane or remain the same.",author:"Unknown"},
 ];
 
 let currentQuoteIdx=Math.floor(Math.random()*QUOTES.length);
@@ -541,10 +571,7 @@ const DEFAULT_STATE={
 
 let state=JSON.parse(JSON.stringify(DEFAULT_STATE));
 function loadState(){
-  try{
-    const s=localStorage.getItem('delta3_v2');
-    if(s){const p=JSON.parse(s);state=Object.assign({},DEFAULT_STATE,p);}
-  }catch(e){}
+  try{const s=localStorage.getItem('delta3_v2');if(s){const p=JSON.parse(s);state=Object.assign({},DEFAULT_STATE,p);}}catch(e){}
   if(state.darkMode)document.body.classList.add('dark');
 }
 function saveState(){try{localStorage.setItem('delta3_v2',JSON.stringify(state));}catch(e){}}
@@ -565,9 +592,7 @@ function getLastWeight(dayId,exIdx){
     if(ds===selectedDate)continue;
     const dd=state.liftLogs[ds]&&state.liftLogs[ds][dayId];
     if(dd&&dd[exIdx]&&dd[exIdx].w&&dd[exIdx].w!==''){
-      const e=dd[exIdx];
-      const w=e.w;
-      const isNum=!isNaN(parseFloat(w));
+      const e=dd[exIdx];const w=e.w;const isNum=!isNaN(parseFloat(w));
       return `Last: ${w}${isNum?(e.u||'lb'):''}`;
     }
   }
@@ -579,14 +604,9 @@ function updateTopFrame(){
   document.getElementById('countdownNum').textContent=getCountdown();
   document.getElementById('mottoDisplay').textContent=state.motto;
   document.getElementById('progFill').style.width=getProgress()+'%';
-  const hPct=getHabitPct(selectedDate);
-  const ePct=getEatingPct(selectedDate);
-  const lDone=getLiftDone(selectedDate);
-  const hThresh=state.habitThreshold||70;
-  const eThresh=state.eatingThreshold||70;
-  const hBar=document.getElementById('habitBar');
-  const eBar=document.getElementById('eatingBar');
-  const lBar=document.getElementById('liftBar');
+  const hPct=getHabitPct(selectedDate),ePct=getEatingPct(selectedDate),lDone=getLiftDone(selectedDate);
+  const hThresh=state.habitThreshold||70,eThresh=state.eatingThreshold||70;
+  const hBar=document.getElementById('habitBar'),eBar=document.getElementById('eatingBar'),lBar=document.getElementById('liftBar');
   if(hBar){hBar.style.width=hPct+'%';hBar.style.background=hPct>=hThresh?'#4ade80':'rgba(255,255,255,0.7)';}
   if(eBar){eBar.style.width=ePct+'%';eBar.style.background=ePct>=eThresh?'#4ade80':'rgba(255,255,255,0.7)';}
   if(lBar){lBar.style.width=lDone?'100%':'0%';lBar.style.background=lDone?'#4ade80':'rgba(255,255,255,0.7)';}
@@ -644,10 +664,7 @@ function renderSavedQuotes(){
   if(!(state.savedQuotes||[]).length)return'';
   let h=`<div style="margin-bottom:14px;"><div class="sec-hdr"><div class="sec-title" style="font-size:16px;">Saved Quotes</div></div>`;
   state.savedQuotes.slice().reverse().forEach(sq=>{
-    h+=`<div class="saved-quote-item">
-      <div style="flex:1;"><div class="saved-quote-text">"${sq.text}"</div><div class="saved-quote-author">— ${sq.author}</div></div>
-      <button class="saved-quote-del" onclick="removeSavedQuote(${sq.idx})">✕</button>
-    </div>`;
+    h+=`<div class="saved-quote-item"><div style="flex:1;"><div class="saved-quote-text">"${sq.text}"</div><div class="saved-quote-author">— ${sq.author}</div></div><button class="saved-quote-del" onclick="removeSavedQuote(${sq.idx})">✕</button></div>`;
   });
   return h+`</div>`;
 }
@@ -934,9 +951,8 @@ function renderAI(){
   const secs=state.aiSections||{};
   let h=renderQuoteCard();
   h+=`<button class="ai-btn" id="aiRunBtn" onclick="runAI()">Run Full Performance Scan</button>`;
-  if(secs.critique||secs.weight||secs.lift||secs.habits||secs.life||secs.motto){
-    h+=`<div class="ai-console">`;
-    h+=`<div class="ai-header">DELTA3 OPERATOR — ${selectedDate}</div>`;
+  if(secs.critique||secs.weight||secs.lift||secs.habits||secs.life){
+    h+=`<div class="ai-console"><div class="ai-header">DELTA3 OPERATOR — ${selectedDate}</div>`;
     if(secs.critique)h+=`<div class="ai-section"><div class="ai-section-title">Overall</div><div class="ai-section-body">${secs.critique}</div></div>`;
     if(secs.weight)h+=`<div class="ai-section"><div class="ai-section-title">Weight Progress</div><div class="ai-section-body">${secs.weight}</div></div>`;
     if(secs.lift)h+=`<div class="ai-section"><div class="ai-section-title">Lifting Advice</div><div class="ai-section-body">${secs.lift}</div></div>`;
@@ -961,7 +977,6 @@ async function runAI(){
   if(!state.apiKey){toast('Save API key first!');return;}
   const btn=document.getElementById('aiRunBtn');
   if(btn){btn.disabled=true;btn.textContent='Scanning...';}
-
   const logs=state.habitLogs[selectedDate]||{};
   const hDone=state.habits.filter(h=>logs[h.id]==='done').length;
   const eatLogs=state.eatingLogs[selectedDate]||{};
@@ -971,17 +986,10 @@ async function runAI(){
   const weights=weightEntries.map(e=>parseFloat(e[1])).filter(v=>!isNaN(v));
   const startW=weights[0]||null,curW=weights[weights.length-1]||null;
   const weightTrend=weights.length>=2?`Started at ${startW}lbs, currently ${curW}lbs (${(curW-startW)>0?'+':''}${(curW-startW).toFixed(1)}lbs over ${weights.length} days)`:'No weight data logged yet';
-  const recentLifts=state.lifts.map(d=>{
-    const ts=state.liftTimestamps&&state.liftTimestamps[d.id];
-    return `${d.day}: last hit ${ts?new Date(ts).toLocaleDateString():'never'}`;
-  }).join(', ');
+  const recentLifts=state.lifts.map(d=>{const ts=state.liftTimestamps&&state.liftTimestamps[d.id];return `${d.day}: last hit ${ts?new Date(ts).toLocaleDateString():'never'}`;}).join(', ');
   const liftDetails=state.lifts.map(d=>{
-    const dl=state.liftLogs[selectedDate]&&state.liftLogs[selectedDate][d.id];
-    if(!dl)return null;
-    const exs=d.exercises.map((ex,idx)=>{
-      const l=dl[idx];
-      return l&&l.w?`${ex.name}: ${l.w}${isNaN(parseFloat(l.w))?'':(l.u||'lb')}`:null;
-    }).filter(Boolean).join(', ');
+    const dl=state.liftLogs[selectedDate]&&state.liftLogs[selectedDate][d.id];if(!dl)return null;
+    const exs=d.exercises.map((ex,idx)=>{const l=dl[idx];return l&&l.w?`${ex.name}: ${l.w}${isNaN(parseFloat(l.w))?'':(l.u||'lb')}`:null;}).filter(Boolean).join(', ');
     return exs?`${d.day} — ${exs}`:null;
   }).filter(Boolean).join('\n');
 
@@ -1002,9 +1010,9 @@ Current motto: "${state.motto}"
 Days until goal: ${getCountdown()}
 
 Respond in this EXACT format with no extra text:
-OVERALL: [2-3 sentences of sharp honest feedback on today's overall performance]
-WEIGHT: [Specific feedback on their weight trend. If losing — affirm and push. If gaining — call it out. If no data — tell them to start logging]
-LIFT: [Specific advice based on their actual logged weights and schedule. Suggest progressive overload, note any gaps in training, recommend improvements]
+OVERALL: [5-6 sentences of sharp honest feedback on today's overall performance]
+WEIGHT: [Specific feedback on their weight trend. If losing — affirm and push. If gaining — call it out. If no data — tell them to start logging immediately]
+LIFT: [Specific advice based on their actual logged weights and schedule. Suggest progressive overload, note any gaps in training, recommend specific improvements]
 HABITS: [Call out exactly which habits they missed and why those specific ones matter. Be specific not generic]
 LIFE: [One piece of genuine life/mindset advice relevant to where they are in their journey with ${getCountdown()} days left]
 MOTTO: [New motivational motto in all caps, under 8 words]`;
@@ -1016,15 +1024,8 @@ MOTTO: [New motivational motto in all caps, under 8 words]`;
     if(data.error)throw new Error(data.error.message);
     const text=data.candidates[0].content.parts[0].text;
     const extract=(key)=>{const m=text.match(new RegExp(`${key}:\\s*(.+?)(?=\\n[A-Z]+:|$)`,'s'));return m?m[1].trim():null;};
-    state.aiSections={
-      critique:extract('OVERALL'),
-      weight:extract('WEIGHT'),
-      lift:extract('LIFT'),
-      habits:extract('HABITS'),
-      life:extract('LIFE'),
-    };
-    const motto=extract('MOTTO');
-    if(motto)state.motto=motto;
+    state.aiSections={critique:extract('OVERALL'),weight:extract('WEIGHT'),lift:extract('LIFT'),habits:extract('HABITS'),life:extract('LIFE')};
+    const motto=extract('MOTTO');if(motto)state.motto=motto;
     saveState();render();toast('Scan complete!');
   }catch(err){
     state.aiSections={critique:'Error: '+err.message};
@@ -1035,9 +1036,7 @@ MOTTO: [New motivational motto in all caps, under 8 words]`;
 function saveApiKey(){const k=document.getElementById('apiKeyInput').value.trim();if(k){state.apiKey=k;saveState();toast('Key saved!');}}
 
 function renderSettings(){
-  const hT=state.habitThreshold||70;
-  const eT=state.eatingThreshold||70;
-  const dark=state.darkMode||false;
+  const hT=state.habitThreshold||70,eT=state.eatingThreshold||70,dark=state.darkMode||false;
   let h=`<div class="settings-sec">
     <div class="settings-lbl">App Motto</div>
     <input class="settings-input" id="s_motto" value="${state.motto.replace(/"/g,'&quot;')}"/>
@@ -1074,24 +1073,19 @@ function renderSettings(){
   state.goals.forEach((g,i)=>{h+=`<div class="goal-item">🎯<div class="goal-text">${g}</div><button class="del-sm" onclick="deleteGoal(${i})">Remove</button></div>`;});
   h+=`</div>`;
   h+=`<div class="settings-sec"><div class="settings-lbl">Manage Habits</div><div class="manage-box">`;
-  if(!state.habits.length)h+=`<div style="padding:10px 0;color:var(--muted);font-size:12px;">No habits.</div>`;
   state.habits.forEach(hb=>{h+=`<div class="manage-row"><span style="font-size:13px;">${hb.name}</span><button class="del-sm" onclick="deleteHabit(${hb.id})">Remove</button></div>`;});
   h+=`</div><button class="add-btn" onclick="openModal('addHabit')">+ Add Habit</button></div>`;
   h+=`<div class="settings-sec"><div class="settings-lbl">Manage Eating Rules</div><div class="manage-box">`;
-  if(!state.restrictions.length)h+=`<div style="padding:10px 0;color:var(--muted);font-size:12px;">No rules.</div>`;
   state.restrictions.forEach(r=>{h+=`<div class="manage-row"><span style="font-size:13px;">${r.name}</span><button class="del-sm" onclick="deleteRestriction(${r.id})">Remove</button></div>`;});
   h+=`</div><button class="add-btn" onclick="openModal('addRule')">+ Add Rule</button></div>`;
   h+=`<div class="settings-sec"><div class="settings-lbl">Manage Workouts</div>`;
   state.lifts.forEach(day=>{
-    h+=`<div class="manage-box" style="margin-bottom:10px;">
-      <div class="manage-row"><strong style="font-size:13px;color:var(--accent);">${day.day}</strong><button class="del-sm" onclick="deleteWorkoutDay('${day.id}')">Remove Day</button></div>`;
+    h+=`<div class="manage-box" style="margin-bottom:10px;"><div class="manage-row"><strong style="font-size:13px;color:var(--accent);">${day.day}</strong><button class="del-sm" onclick="deleteWorkoutDay('${day.id}')">Remove Day</button></div>`;
     day.exercises.forEach(ex=>{
-      h+=`<div class="manage-row" style="gap:8px;">
-        <span style="font-size:12px;flex:1;">${ex.name}</span>
+      h+=`<div class="manage-row" style="gap:8px;"><span style="font-size:12px;flex:1;">${ex.name}</span>
         <input class="settings-input-sm" value="${ex.sets}" onchange="updateExDefault('${day.id}',${ex.id},'sets',this.value)" title="Sets"/>
         <input class="settings-input-sm" value="${ex.reps}" onchange="updateExDefault('${day.id}',${ex.id},'reps',this.value)" title="Reps"/>
-        <button class="del-sm" onclick="deleteExercise('${day.id}',${ex.id})">Remove</button>
-      </div>`;
+        <button class="del-sm" onclick="deleteExercise('${day.id}',${ex.id})">Remove</button></div>`;
     });
     h+=`<button class="add-btn" style="margin-top:8px;" onclick="openModal('addEx','${day.id}')">+ Add Exercise</button></div>`;
   });
@@ -1100,16 +1094,10 @@ function renderSettings(){
   return h;
 }
 
-function toggleDarkMode(on){
-  state.darkMode=on;
-  document.body.classList.toggle('dark',on);
-  saveState();
-}
+function toggleDarkMode(on){state.darkMode=on;document.body.classList.toggle('dark',on);saveState();}
 function saveThresholds(){
-  const h=document.getElementById('habitSlider');
-  const e=document.getElementById('eatingSlider');
-  if(h)state.habitThreshold=parseInt(h.value);
-  if(e)state.eatingThreshold=parseInt(e.value);
+  const h=document.getElementById('habitSlider'),e=document.getElementById('eatingSlider');
+  if(h)state.habitThreshold=parseInt(h.value);if(e)state.eatingThreshold=parseInt(e.value);
   saveState();render();toast('Thresholds saved!');
 }
 function updateExDefault(dayId,exId,field,val){const day=state.lifts.find(d=>d.id===dayId);if(!day)return;const ex=day.exercises.find(e=>e.id===exId);if(ex)ex[field]=val;saveState();}
@@ -1128,8 +1116,7 @@ function openModal(type,extra=''){
     addGoal:()=>`<div class="modal-title">New Goal</div><input class="modal-input" id="mi_goal" placeholder="What are you working toward?" autofocus/><div class="modal-row"><button class="modal-btn cancel" onclick="closeModal()">Cancel</button><button class="modal-btn confirm" onclick="confirmAddGoal()">Add</button></div>`,
     addTodo:()=>`<div class="modal-title">New Task</div><input class="modal-input" id="mi_todo" placeholder="What needs to get done?" autofocus/><div class="modal-row"><button class="modal-btn cancel" onclick="closeModal()">Cancel</button><button class="modal-btn confirm" onclick="confirmAddTodo()">Add</button></div>`,
   };
-  const content=templates[type]?templates[type]():'';
-  if(!content)return;
+  const content=templates[type]?templates[type]():'';if(!content)return;
   const o=document.createElement('div');o.className='modal-overlay';o.id='mo';
   o.innerHTML=`<div class="modal">${content}</div>`;
   o.addEventListener('click',e=>{if(e.target===o)closeModal();});
@@ -1165,8 +1152,7 @@ function attachEvents(){
 function showProudPopup(){
   const todayStr=fmtDate(TODAY);
   if(state.proudLog&&state.proudLog[todayStr]!==undefined)return;
-  const overlay=document.createElement('div');
-  overlay.className='proud-overlay';overlay.id='proudOverlay';
+  const overlay=document.createElement('div');overlay.className='proud-overlay';overlay.id='proudOverlay';
   overlay.innerHTML=`<div class="proud-modal">
     <div class="proud-title">Are You Proud Of Today?</div>
     <div class="proud-sub">Be honest with yourself.<br>This data becomes powerful over time.</div>
