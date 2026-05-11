@@ -24,151 +24,68 @@ body.dark{
   --glass-bg:rgba(20,40,80,0.6);
 }
 
-/* REPLACE FROM HERE */
-/* MOBILE FIRST — scrollable, compact glass box */
 html,body{height:auto;overflow-x:hidden;overflow-y:auto;}
 body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;display:block;transition:background 0.3s,color 0.3s;}
 
-.top-frame{
-  background:var(--header-bg);
-  position:sticky;
-  top:0;
-  z-index:100;
-  /* Adds the breathing room at the top of the phone screen */
-  padding-top: 20px; 
-  padding-bottom: 5px;
-}
+.top-frame{background:var(--header-bg);position:sticky;top:0;z-index:100;}
 
+/* MOBILE glass box */
 .glass-box{
-  margin: 0 14px 12px;
+  margin:12px 14px 10px;
   background:var(--glass-bg);
   border:1px solid rgba(255,255,255,0.4);
-  border-radius:20px;
-  padding:15px 12px 35px;
-  
-  /* GRID FOR MOBILE CENTERING */
-  display: grid;
-  grid-template-columns: 85px 1fr 85px; 
-  align-items: center;
-  
+  border-radius:18px;
+  padding:12px 12px 32px;
+  display:grid;
+  grid-template-columns:85px 1fr 85px;
+  align-items:center;
   box-shadow:0 8px 32px rgba(31,60,120,0.1),inset 0 1px 0 rgba(255,255,255,0.5);
   position:relative;
   overflow:hidden;
-  min-height:110px;
+  min-height:100px;
 }
-
-.glass-icons{position:absolute;top:8px;right:10px;display:flex;gap:6px;z-index:10;}
+.glass-icons{position:absolute;top:8px;right:8px;display:flex;gap:6px;z-index:10;}
 .glass-icon-btn{background:rgba(255,255,255,0.25);border:1px solid rgba(255,255,255,0.4);border-radius:7px;width:26px;height:26px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;transition:background 0.15s;}
+.glass-icon-btn:hover{background:rgba(255,255,255,0.4);}
 
-.glass-scores{
-  grid-column: 1;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  gap:10px;
-  width:100%;
-}
+.glass-scores{grid-column:1;display:flex;flex-direction:column;justify-content:center;gap:10px;}
 .glass-score-item{display:flex;flex-direction:column;gap:3px;}
 .glass-score-label{font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:#fff;font-family:'DM Mono',monospace;font-weight:700;}
 .glass-score-bar{height:8px;background:rgba(255,255,255,0.2);border-radius:3px;overflow:hidden;}
 .glass-score-fill{height:100%;border-radius:3px;transition:width 0.4s;background:rgba(255,255,255,0.7);}
 
-.glass-center{
-  grid-column: 2;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align: center;
-  padding:0;
-}
-.glass-center img{height:52px;width:auto;display:block;}
-.glass-motto{font-family:'DM Sans',sans-serif;font-size:7.5px;letter-spacing:1px;color:#fff;text-transform:uppercase;font-weight:700;text-align:center;max-width:140px;line-height:1.2;margin-top:0 !important;}
+.glass-center{grid-column:2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:0;}
+.glass-center img{height:80px;width:auto;display:block;}
+.glass-motto{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:1.5px;color:rgba(255,255,255,0.9);text-transform:uppercase;font-weight:600;text-align:center;line-height:1.3;max-width:150px;margin-top:-14px;}
 
 .glass-countdown{position:absolute;bottom:8px;right:12px;text-align:right;}
-.glass-countdown-num{font-family:'Bebas Neue',sans-serif;font-size:28px;color:#fff;line-height:1;text-shadow:0 2px 12px rgba(37,99,235,0.3);}
-.glass-countdown-label{font-size:6px;color:rgba(255,255,255,0.75);letter-spacing:1.5px;text-transform:uppercase;font-family:'DM Mono',monospace;margin-top:1px;}
+.glass-countdown-num{font-family:'Bebas Neue',sans-serif;font-size:26px;color:#fff;line-height:1;}
+.glass-countdown-label{font-size:6px;color:rgba(255,255,255,0.75);letter-spacing:1.5px;text-transform:uppercase;font-family:'DM Mono',monospace;}
 
+/* DESKTOP */
 @media(min-width:700px){
   html,body{height:100%;overflow:hidden;}
   body{display:flex;flex-direction:column;}
-  .top-frame{flex-shrink:0;position:static;padding-top:0;}
+  .top-frame{flex-shrink:0;position:static;}
   .main{flex:1;overflow-y:auto;padding:16px 20px 80px;}
 
-  .glass-box {
-    margin: 28px 24px 16px;
-    padding: 20px 40px;
-    display: grid;
-    grid-template-columns: 180px 1fr 180px; 
-    align-items: center;
-    min-height: 200px;
-    position: relative;
+  .glass-box{
+    margin:24px 24px 14px;
+    padding:20px 32px 20px;
+    grid-template-columns:160px 1fr 160px;
+    min-height:180px;
   }
-
-  .glass-scores {
-    grid-column: 1;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-  }
-
-  .glass-center {
-    grid-column: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-
-  .glass-center img {
-    height: 200px; 
-    width: auto;
-    display: block;
-    margin: 0 auto;
-  }
-
-  .glass-motto {
-    font-size: 11px;
-    max-width: 460px;
-    letter-spacing: 3px;
-    text-align: center;
-    color: #fff;
-    font-weight: 700;
-    margin-top: -45px !important; 
-    padding-right: 0 !important;
-  }
-
-  .glass-countdown {
-    grid-column: 3;
-    position: static;
-    text-align: right;
-  }
-
-  .glass-countdown-num { font-size: 44px; }
-  .glass-countdown-label { font-size: 8px; }
-  .glass-icon-btn { width: 30px; height: 30px; font-size: 15px; }
-}
-/* STOP REPLACING HERE */
-  
-/* FIXES THE WEIRD DATE THING — SNAP TO LEFT */
-.month-year-display {
-  padding: 12px 24px 2px !important;
-  font-family: 'Bebas Neue', sans-serif !important;
-  font-size: 24px !important;
-  text-align: left !important;
-  color: var(--accent) !important;
+  .glass-scores{gap:16px;}
+  .glass-score-label{font-size:9px;}
+  .glass-score-bar{height:11px;}
+  .glass-center img{height:120px;}
+  .glass-motto{font-size:9px;max-width:340px;letter-spacing:2px;}
+  .glass-countdown{bottom:14px;right:18px;}
+  .glass-countdown-num{font-size:44px;}
+  .glass-countdown-label{font-size:8px;}
+  .glass-icon-btn{width:30px;height:30px;font-size:15px;}
 }
 
-.date-strip-wrap {
-  display: flex !important;
-  padding: 8px 24px 14px !important;
-  justify-content: flex-start !important;
-  overflow-x: auto;
-}
-
-/* DATE STRIP */
 .month-year-display{padding:0 16px 3px;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:3px;color:var(--accent);}
 .date-strip-wrap{display:flex;gap:5px;overflow-x:auto;padding:6px 16px 6px;scrollbar-width:none;}
 .date-strip-wrap::-webkit-scrollbar{display:none;}
@@ -204,7 +121,6 @@ body.dark .nav-btn{background:rgba(255,255,255,0.05);}
 .quote-heart{position:absolute;top:14px;right:14px;background:none;border:none;font-size:20px;cursor:pointer;transition:transform 0.2s;line-height:1;}
 .quote-heart:hover{transform:scale(1.2);}
 .quote-new-btn{margin-top:12px;background:none;border:1px solid rgba(37,99,235,0.2);color:var(--accent);border-radius:8px;padding:6px 14px;font-size:10px;cursor:pointer;letter-spacing:1px;text-transform:uppercase;font-family:'DM Sans',sans-serif;font-weight:700;transition:all 0.15s;}
-.quote-new-btn:hover{background:rgba(37,99,235,0.06);}
 .saved-quote-item{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:7px;display:flex;align-items:flex-start;gap:10px;box-shadow:var(--shadow);}
 .saved-quote-text{font-size:12px;font-style:italic;font-family:'DM Sans',sans-serif;font-weight:500;line-height:1.5;color:var(--text);}
 .saved-quote-author{font-size:9px;color:var(--accent);font-family:'DM Mono',monospace;font-weight:700;margin-top:4px;letter-spacing:1px;text-transform:uppercase;}
@@ -368,9 +284,9 @@ body.dark .nav-btn{background:rgba(255,255,255,0.05);}
 <div class="top-frame">
   <div class="glass-box">
     <div class="glass-icons">
-      <button class="glass-icon-btn" onclick="showTab('photos')" title="Photos">📸</button>
-      <button class="glass-icon-btn" onclick="showTab('ai')" title="AI">🤖</button>
-      <button class="glass-icon-btn" onclick="showTab('settings')" title="Settings">⚙️</button>
+      <button class="glass-icon-btn" onclick="showTab('photos')">📸</button>
+      <button class="glass-icon-btn" onclick="showTab('ai')">🤖</button>
+      <button class="glass-icon-btn" onclick="showTab('settings')">⚙️</button>
     </div>
     <div class="glass-scores">
       <div class="glass-score-item">
@@ -388,7 +304,7 @@ body.dark .nav-btn{background:rgba(255,255,255,0.05);}
     </div>
     <div class="glass-center">
       <img src="logo.png" alt="DELTA3" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
-      <div style="display:none;font-family:'DM Sans',sans-serif;font-size:36px;font-weight:900;color:#fff;letter-spacing:-1px;">DELTA3</div>
+      <div style="display:none;font-family:'DM Sans',sans-serif;font-size:32px;font-weight:900;color:#fff;">DELTA3</div>
       <div class="glass-motto" id="mottoDisplay">MAKE HARD DECISIONS / IF IT WAS EASY EVERYONE WOULD DO IT</div>
     </div>
     <div class="glass-countdown">
@@ -462,18 +378,14 @@ const QUOTES=[
   {text:"Knowing yourself is the beginning of all wisdom.",author:"Aristotle"},
   {text:"Push yourself because no one else is going to do it for you.",author:"Unknown"},
   {text:"Continuous improvement is better than delayed perfection.",author:"Mark Twain"},
-  {text:"The man who moves a mountain begins by carrying away small stones.",author:"Confucius"},
   {text:"He who sweats more in training bleeds less in war.",author:"Spartan Warrior Code"},
   {text:"Your body can stand almost anything. It's your mind that you have to convince.",author:"Unknown"},
   {text:"The successful warrior is the average man with laser-like focus.",author:"Bruce Lee"},
-  {text:"Excellence is not a destination but a continuous journey that never ends.",author:"Brian Tracy"},
   {text:"A champion is defined not by their wins but by how they can recover when they fall.",author:"Serena Williams"},
-  {text:"Gold medals aren't really made of gold. They're made of sweat, determination, and a hard-to-find alloy called guts.",author:"Dan Gable"},
   {text:"If you want to be the best, you have to do things that other people aren't willing to do.",author:"Michael Phelps"},
   {text:"The harder the battle, the sweeter the victory.",author:"Les Brown"},
   {text:"You don't have to be great to start, but you have to start to be great.",author:"Zig Ziglar"},
   {text:"The only bad workout is the one that didn't happen.",author:"Unknown"},
-  {text:"Take care of your body. It's the only place you have to live.",author:"Jim Rohn"},
   {text:"Strength does not come from physical capacity. It comes from indomitable will.",author:"Mahatma Gandhi"},
   {text:"The first wealth is health.",author:"Ralph Waldo Emerson"},
   {text:"To give anything less than your best is to sacrifice the gift.",author:"Steve Prefontaine"},
@@ -582,7 +494,7 @@ let currentTab='habits',selectedDate=fmtDate(TODAY),expandedWorkout=null;
 function getCountdown(){const g=new Date(state.goalDate);return Math.max(0,Math.ceil((g-new Date())/86400000));}
 function getProgress(){const g=new Date(state.goalDate),n=new Date();return Math.min(100,Math.max(0,((n-START_DATE)/(g-START_DATE))*100)).toFixed(1);}
 function getHabitPct(ds){if(!state.habits.length)return 0;const logs=state.habitLogs[ds]||{};return Math.round(state.habits.filter(h=>logs[h.id]==='done').length/state.habits.length*100);}
-function getEatingPct(ds){if(!state.restrictions.length)return 0;const logs=state.eatingLogs[ds]||{};return Math.round(state.restrictions.filter(r=>(logs[r.id]||'none')==='good').length/state.restrictions.length*100);}
+function getEatingPct(ds){if(!state.restrictions.length)return 0;const logs=state.eatingLogs[ds]||{};return Math.round(state.restrictions.filter(r=>{const e=logs[r.id];return(typeof e==='string'?e:e&&e.status||'none')==='good';}).length/state.restrictions.length*100);}
 function getLiftDone(ds){const logs=state.liftLogs[ds]||{};return Object.values(logs).some(day=>Object.values(day).some(ex=>ex.w&&ex.w!==''));}
 function isDayWorkoutHit(dayId,ds){const logs=state.liftLogs[ds]||{};const d=logs[dayId];return d&&Object.values(d).some(ex=>ex.w&&ex.w!=='');}
 function getStreak(habitId){let streak=0,d=new Date(TODAY);for(let i=0;i<366;i++){const ds=fmtDate(d);if((state.habitLogs[ds]||{})[habitId]==='done')streak++;else break;d.setDate(d.getDate()-1);}return streak;}
@@ -740,7 +652,7 @@ function renderLift(){
   h+=`<div class="sec-hdr"><div class="sec-title">Workout Log</div><button class="add-btn" onclick="openModal('addDay')">+ Add Day</button></div>`;
   if(!state.lifts.length)h+=`<div class="empty-state">No workouts yet.</div>`;
   state.lifts.forEach(day=>{
-    const open=expandedWorkout===day.id;
+    const open=String(expandedWorkout)===String(day.id);
     const dayLogs=(state.liftLogs[selectedDate]&&state.liftLogs[selectedDate][day.id])||{};
     const isHit=isDayWorkoutHit(day.id,selectedDate);
     h+=`<div class="workout-day${isHit?' hit':''}"><div class="wd-hdr" onclick="toggleWorkout('${day.id}')">
@@ -784,7 +696,7 @@ function renderLift(){
   return h;
 }
 
-function toggleWorkout(id){expandedWorkout=expandedWorkout===id?null:id;render();}
+function toggleWorkout(id){expandedWorkout=String(expandedWorkout)===String(id)?null:id;render();}
 function logLift(dayId,idx,field,val){
   if(!state.liftLogs[selectedDate])state.liftLogs[selectedDate]={};
   if(!state.liftLogs[selectedDate][dayId])state.liftLogs[selectedDate][dayId]={};
@@ -804,7 +716,8 @@ function renderEating(){
   h+=`<div class="sec-hdr"><div class="sec-title">Eating Log</div><button class="add-btn" onclick="openModal('addRule')">+ Rule</button></div>`;
   h+=`<div class="r-grid">`;
   state.restrictions.forEach(r=>{
-    const s=log[r.id]||'none';
+    const entry=log[r.id];
+    const s=typeof entry==='string'?entry:(entry&&entry.status)||'none';
     h+=`<div class="r-card${s==='good'?' good':s==='bad'?' bad':''}" onclick="toggleRestriction(${r.id})">
       <span style="font-size:18px;">${s==='good'?'✅':s==='bad'?'❌':'⬜'}</span>
       <div class="r-label">${r.name}</div>
@@ -817,7 +730,8 @@ function renderEating(){
 }
 function toggleRestriction(id){
   if(!state.eatingLogs[selectedDate])state.eatingLogs[selectedDate]={notes:''};
-  const cur=state.eatingLogs[selectedDate][id]||'none';
+  const entry=state.eatingLogs[selectedDate][id];
+  const cur=typeof entry==='string'?entry:(entry&&entry.status)||'none';
   state.eatingLogs[selectedDate][id]=cur==='none'?'good':cur==='good'?'bad':'none';
   saveState();render();
 }
@@ -980,7 +894,7 @@ async function runAI(){
   const logs=state.habitLogs[selectedDate]||{};
   const hDone=state.habits.filter(h=>logs[h.id]==='done').length;
   const eatLogs=state.eatingLogs[selectedDate]||{};
-  const eDone=state.restrictions.filter(r=>(eatLogs[r.id]||'none')==='good').length;
+  const eDone=state.restrictions.filter(r=>{const e=eatLogs[r.id];return(typeof e==='string'?e:(e&&e.status)||'none')==='good';}).length;
   const ci=state.checkinLogs[selectedDate]||{};
   const weightEntries=Object.entries(state.weightLog).sort((a,b)=>a[0].localeCompare(b[0]));
   const weights=weightEntries.map(e=>parseFloat(e[1])).filter(v=>!isNaN(v));
@@ -1000,7 +914,6 @@ Date: ${selectedDate}
 Habits completed: ${hDone}/${state.habits.length} (${state.habits.filter(h=>logs[h.id]==='done').map(h=>h.name).join(', ')||'none'})
 Habits missed: ${state.habits.filter(h=>(logs[h.id]||'none')!=='done').map(h=>h.name).join(', ')||'none'}
 Eating rules followed: ${eDone}/${state.restrictions.length}
-Eating rules broken: ${state.restrictions.filter(r=>(eatLogs[r.id]||'none')==='bad').map(r=>r.name).join(', ')||'none'}
 Mood: ${ci.mood||'not logged'}/5
 Morning note: "${ci.note||'none'}"
 Weight trend: ${weightTrend}
@@ -1018,7 +931,7 @@ LIFE: [One piece of genuine life/mindset advice relevant to where they are in th
 MOTTO: [New motivational motto in all caps, under 8 words]`;
 
   try{
-    const url=`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${state.apiKey}`;
+    const url=`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${state.apiKey}`;
     const res=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}]})});
     const data=await res.json();
     if(data.error)throw new Error(data.error.message);
